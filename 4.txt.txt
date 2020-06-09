@@ -1,0 +1,46 @@
+Downloading the code from the github
+===========================================
+This can be done in 3 ways
+1 git clone
+2 git fetch
+3 git pull
+
+git clone
+===========
+This will download all the code from the remote github into the local machine irresepective of whether that code is present on our machine or not.This is generally one time activity where a copy of the code has to be copied to all the team members machine
+
+Syntax:
+git clone remote_git_hub_url
+
+git fetch
+===============
+This will download only the modified files and place them on a seperate branch called as remote branch.We can go into this remote branch and check if the modifications are ok or not,If they are acceptable then we merge it with the master branch.
+
+1 Open github.com
+2 Go to the repository that we uploaded
+3 Select some file—>Click on Edit
+4 Make some changes to the files
+5 Click on Commit changes
+6 Open gitbash
+git fetch
+This will download only the modified files but it will not be visible on master.Instead it create a remote branch where these changes can be seen
+7 To see the list of all branches local and remote
+git branch -a
+8 Move into that remote branch
+git checkout remotes/origin/master
+9 View the changes and if they are acceptable merge it with master
+git checkout master
+git merge remotes/origin/master
+
+git pull
+=============
+This will download only the modified files but it will merge them directly with the master branch
+
+1 Open github.com
+2 Go to the repository that we uploaded
+3 Select some file—>Click on Edit
+4 Make some changes to the files
+5 Click on Commit changes
+6 Open gitbash
+git pull
+Now the modified files can be see directly on the master

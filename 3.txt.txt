@@ -1,0 +1,68 @@
+Branching in Git
+======================
+This is a feature of git which allows team memebrs to create 
+code related to vaious functionalities on different branches
+and later merge them with the "master" branch."Master" is the
+deafult branch of git
+
+Branching helps us to create the code in an unclutterd way
+
+1 To see the list of all the local branches
+  git branch
+  
+2 To see the list of all the branches (local and remote)
+  git branch -a
+
+3 To create a new branch
+  git branch branch_name
+
+4 To move into a specific branch
+  git checkout branch_name
+
+5 To create a branch and also move into it
+  git checkout -b branch_name
+
+6 To merge a branch
+  git merge branch_name
+
+7 To delete a branch that is already merged
+  git branch -d branch_name
+  This is also called as soft delete
+
+8 To delete a branch that is not merged
+  git branch -D branch_name
+  This is also called as hard delete
+
+
+Note: Whenever a branch is created the entire commit history of 
+the parent branch will be copied into the new branch
+
+Note: Irrespecive of on which branch a file is created or modified git
+only check from whcih branch it is commited and that file belongs to
+the commited branch only
+
+Working on remote Gitreposiotry(github)
+==========================================
+1 Open github.com---->Singup for a free acoount
+2 Signin into that account
+
+Uploading the code into github(Checkin)
+==============================================
+1 Signin int github.com
+2 Click on + on TopRight corner
+3 Click on New Repository
+4 Enter some reposiotry name--->Select Public or Private
+5 Click on Create repository
+6 Go to "push an exisiting reposiotry from command line"
+  Copy and paste the fitst command
+  This will create a link between the local and the remote repository
+7 To upload the code
+  git push -u origin master
+  Enter username and password of github
+
+Downloading the code from github
+================================================
+This can be done in 3 ways
+1 git clone
+2 git fetch
+3 git pull

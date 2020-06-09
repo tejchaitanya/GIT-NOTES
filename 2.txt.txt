@@ -1,0 +1,72 @@
+Git uses three components when working on the local machine
+1 Working directory or Workspace
+2 Stagging Area
+3 Local Repository
+
+Working directory is the folder where the code or the configuration
+files are created.Initially the files present here are called as 
+Untracked files
+
+Stagging Area is the intermediate buffer zone of git into which 
+files temporarly move for indexing purpose and the files present 
+here are called as indexed files
+
+Local Repository is the location where version controlling happens and
+files present here are called as Commited files
+
+1 To initilise the current folder as a git repo
+  git init
+  Note: This will create a hidden folder called as .git which stores all
+  the configuration necessary for git to run.
+
+2 To send a file from working dir to stagging area
+  git add filename
+  To send multiple files to stagging area
+  git add file1 file2 file3
+  To send all the files and folders into the stagging area
+  git add .
+  Note  . represents present working directory
+
+3 To remove files from the stagging area and bring them back to 
+  untracked section
+  git rm --cached filename
+  (or)
+  git reset filename
+
+4 To send the files from the stagging area to the local repository
+  git commit -m "Some Message"
+
+5 To see the status of the files present in the untracked and stagging areas
+  git status
+
+6 To see the commit history of the local repository
+  git log
+  To see the commit history in short format
+  git log --oneline
+
+
+===================================================
+.gitignore
+==============
+This is a special configuration file which is sued for hiding
+private files from git.Any file whose name is mentioned in 
+.gitignore become unaccesble by git
+
+1 Create few file
+  touch file1 file2 file3 file4 file5
+
+2 Check the status of git
+  git status
+  It will show all the above 5 files as untracked files
+
+3 To hide file1-file3 from git
+  cat > .gitignore
+  file1
+  file2
+  file3
+  To come out of cat command ctrl+d
+
+4 Check the status of git
+  git status
+  file1-file3 will no longer be show as untracked files
+  git cannot access those files
