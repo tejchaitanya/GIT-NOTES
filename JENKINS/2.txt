@@ -1,0 +1,85 @@
+Setup of tomcat on QA and ProdServer
+
+=========================================
+
+1 Connect ot QA server AWS isntance using git bash
+
+2 Update the apt repository
+
+sudo apt-get update
+
+3 Install tomcat8
+
+sudo apt-get install -y tomcat8
+
+4 Install tomcat8-admin
+
+sudo apt-get install -y tomcat8-admin
+
+5 Edit the tomcat-users.xml file
+
+cd /etc/tomcat8
+
+sudo vim tomcat-users.xml
+
+Delete the entire content of the file and add the below statement
+
+<tomcat-users>
+
+<user username=”intelliqit” password=”intelliqit” roles=”manager-script”/>
+
+<tomcat-users>
+
+6 Restart tomcat8
+
+sudo service tomcat8 restart
+
+Note: Repeat the above six steps on the ProdServer AWS instance
+
+Stage 1 (Continuous Download)
+
+======================================
+
+1 Open the dashboard of Jenkins
+
+2 Click on New item—>Enter item name as “Development”
+
+3 Select Free Style Project—->OK
+
+4 Go to Source Code Management
+
+5 Select Git
+
+6 Enter the Github url where developers have uploaded the code
+
+https://github.com/intelliqittrainings/maven.git
+
+7 Click on Apply—->Save
+
+8 Go to the dashbaord of Jenkins
+
+9 Go to the development job—>Click on Build icon
+
+This job will downlaod all the code from the remote github in the
+
+JenkinServer AWS instance
+
+Stage 2 (Continuous Build)
+
+==================================
+
+1 Go to the dashboard of Jenkins
+
+2 Go to the Development job—->Click on Configure
+
+3 Go to Build section—>Click on Add Build step
+
+4 Click on Invoke Top Level Maven targets
+
+5 Enter the Goal : package
+
+6 Click on apply—>Save
+
+7 Go to the dashboard of Jenkins—->Go to Development job
+
+Click on Build icon

@@ -1,0 +1,69 @@
+Jenkins
+=============
+This is a tool for implementing CI-CD
+
+Stage in CI-CD
+=====================
+Stage 1 (Continuous Download)
+The code created by developers is uplaoded into some version
+controlling system like Git.The moment code is uplaoded into
+Git jenkins will get a notification and Jenkins will download
+that code.This is called Continuous Download
+
+Stage 2 (Continuous Build)
+The code downloaded in the previous stage has to be converted into
+an artifact and using build tools like Ant,Maven,Gradle etc.
+Jenkins will take the help of the above build pligins and create
+an artifact.This artifact can come in the format of war,ear,exe file
+
+Stage 3(Continuous Deployment)
+The artifact created in the previous stage has to deployed into the 
+Testing server where a team of testers can check if the application
+is working accoring to the end users requirements.These testing servers
+might be running on some application servers like tomcat,Weblogic,Jboss etc
+Jenkins will deploy the artifact into the testing servers and this is
+called Continuous Depoloyment
+
+Stage 4 (Continuous Testing)
+Jenkins will now run the automation test scripts created by the testers
+and check if the applicaiton is working correctly or not.These automation
+test scripts could be created by testers using tools like selenium,uft,Codedui
+etc.Jenkins will run these test scripts and if the testing fails Jenkins will
+send email notifications to developerts and testers.Developers fix the bugs and
+uplaod the modified code into the version controlling system and JEnkins will
+start from stage 1
+
+Stage 5 (Continuous Delivery)
+If testing passes Jenkins will deploy the application the production servers
+where the client or the ned user can start accessing it.Thid is generally 
+done by jenkins after taking interactive approvals from the Delivery team.
+
+
+
+Setup of Jenkins and Tomcats for CI-CD
+==========================================
+1 Signin into AWS
+2 Create 3 AWS ubuntu 18 instances
+3 NAme the first one as JenkinsServer,second one as QAServer
+  and the last one as ProdServer
+
+
+Setup of Jenkins on the JEnkinsServer AWS instance
+=========================================================
+1 Connect to Jenkinsserver AWS instance using git bash
+2 Update the apt repository
+  sudo apt-get update
+3 Install java
+  sudo apt-get install -y openjdk-8-jdk
+4 Install git and maven
+  sudo apt-get install -y git maven
+5 Download jenkins.war
+  wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+6 To start jenkins
+  java -jar jenkins.war
+7 To acces jenkins from a browser
+  public_ip_of_jenkinserver:8080
+8 Unlock Jenkins by entering the admin password
+9 Click on Install Suggested plugins
+10 Create first admin user--->Click Continue--->Click Save and Finish
+

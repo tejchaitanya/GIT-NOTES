@@ -1,0 +1,78 @@
+Stage 3 (Continuous Deployment)
+======================================
+1 Open the dashboard of Jenkins
+2 Click on Manage Jenkins--->Manage plugins
+3 Go to Available section
+4 Search for "Deploy to Container" plugin
+5 Click on Install without restart
+6 Go to dashboard pf Jenkins
+7 Go to Development job--->Configure
+8 Go to Post Build actions
+9 Click on Add Post build action
+10 Click on Deploy war/ear to container
+   war/ear files:  **\*.war
+   context path: testapp
+   click on Add containers---->Select tomcat8
+   Enter tomcat8 username and password
+   Tomcat url: private_ip_of_qaserver:8080
+11 Apply---->Save
+12 Go to the dashboard of Jenkins--->Go to the Development job
+   Click on Build icon
+   This job will deploy the artifact into tomcat on the QAServer
+   To access the deployed application
+   a) Launch any browser
+   b) public_ip_of_qaserver:8080\testapp
+
+===============================================================================
+
+Stage 4 (Continuous Testing)
+------------------------------------
+1 Open the dash board of Jenkins
+2 Click on New item
+3 Enter item name as "Testing"
+4 Select Free Style Project--->OK
+5 Go to Source Code Management
+6 Select Git
+7 Enter the github url where Testers have uplaoded the selenium test scripts
+  https://github.com/intelliqittrainings/FunctionalTesting.git
+8 Go to Build section
+9 Click on Add Build step
+10 Click on Execute shell
+   java -jar path_where_testing.jar_is_downloaded
+12 Apply--->Save
+13 Go to the dashboard of Jenkins
+14 Go to the Testing job--->Click on Build icon
+   This job will downlaod the selenium test scripts created by the testers
+   and execute them
+
+Linking Development job with Testing job
+===============================================
+1 Open the dashboard of Jenkins
+2 Go to the Development job---->Click on Configure
+3 Go to Post build actions
+4 Click on Add post build action
+5 Click on Build other projects
+6 Enter project name as Testing
+7 Apply---->Save
+  Now if we run the dEvelopment job in Jenkins it will execute
+  the first 3 stages of CI and then it will call the Testing job
+  which will excute the remaining stages
+  This is called upstream/downstream job configurations in Jenkins
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
