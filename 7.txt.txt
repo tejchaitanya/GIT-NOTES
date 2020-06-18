@@ -1,0 +1,76 @@
+Git Stash
+===============
+This is a section og git where we can store the files
+and once files are stored in this section further of
+git cannot touch those files until they are unstashed
+
+This is generally used to store unfinished or semi finished
+work and continue with some other functionality code.
+
+1 To stash all the files present in the stagging area
+  git stash 
+
+2 To stash all the files present in the stagging area and untracked section
+  git stash -u
+
+3 To stash all the files present in the stagging area,untracked section and   also the .gitignore file
+  git stash -a
+
+4 To see the list of stashes
+  git stash list
+
+5 To unstash the lastest stash
+  git stash pop
+
+6 To unstash an older stash
+  git stash pop stash@{stashno}
+
+.gitignore is a hidden file of git which is used for storing
+the name of private/secret files.Any file whose name is mentioned
+in .gitignore remains unaccessable by git.But .gitignore itself
+can be accesed by git,which means .gitignore moves into the stagging
+area,local reposiotry and the remote git repository
+
+To prevent this and make .gitignore hidden from git
+git stash -a
+
+=============================================================
+
+Git Tags
+==============
+This is used for placing bookmarks on important commits
+This is genrally done to identify important commits relates
+to release activities
+
+Tags are clasified into 2 types
+1 Light weight Tags
+2 Annited Tags
+
+1 To create a light weight tag
+  git tag tag_name
+  Note: Tags are bydefault created by the latest commit
+
+2 To create tag for an older commit
+  git tag tag_name older_commitid
+
+3 To create an annoted tag
+  git tag -a tag_name -m "some message"
+  This is also by default created for the top most commit
+
+4 To create an annoted tag for an older commit
+  git tag -a tag_name -m "some message" older_commit_id
+
+5 To see the list of all the tags
+  git tag
+
+6 To push the tags into the remote git repository
+  git push --tags
+
+7 To delete a tag from the local machine
+  git tag -d tag_name
+
+8 To delete a tag from the github repository
+  git push origin  :tagname
+
+9 To see the annoted tag message and info
+   git show tag_name
