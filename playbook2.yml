@@ -1,0 +1,13 @@
+# second playbook
+- hosts: all
+  tasks:
+    - name: install git
+      package:
+        name: "git"
+        state: present
+    - name: copying the code to /var/www/html path
+      git:
+        repo: "https://github.com/KumarNithish12/sample_terraform_ansible_php.git"
+        clone: yes
+        dest: /var/www/html/web/
+
