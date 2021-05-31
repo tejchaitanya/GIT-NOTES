@@ -1,0 +1,37 @@
+---
+- name: retriving the new docker ip using ansible playbook
+  hosts: all
+  become: y
+  tasks:
+     - name: setting yum repo for docker
+       yum_repository:
+            name: docker
+            baseurl: https://download.docker.com/linux/centos/7/x86_64/stable
+            description: setting yum repo for docker
+            gpgcheck: no
+
+     - name: executing docker installation command
+       command: "yum install docker-ce --nobest -y"
+
+     - name: launchin docker container
+       docker_container:
+           name: os1
+           image: jdeathe/centos-ssh
+           interactive: yes
+           state: started
+           ports:
+             - 22:22
+     - name: executing docker IP command
+       command: "docker inspect --format '{''{.NetworkSettings.IPAddress}''}' os1"
+       register: ip
+     - name: printing the ip using debug module
+       debug:
+          msg: "{{ip}} container ip"
+
+
+     - name: inventory update
+       blockinfile:
+               path: /home/ansadmin/ws/hosts
+               block: |
+                    [target]
+                    {{ip.stdout}} ansible_user=root
